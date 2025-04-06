@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Logo and Description */}
           <div className="md:col-span-1">
             <img 
-              src="/src/assets/logo-white.png" 
+              src="/assets/logo-white.png" 
               alt="Global United FC" 
               className="h-12 w-auto"
             />

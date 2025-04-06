@@ -25,7 +25,7 @@ export default function Header() {
           {/* Logo - Taille augmentée */}
           <div className="flex-shrink-0">
             <img 
-              src= {isScrolled ? "/src/assets/logo-black.png" : "/src/assets/logo-white.png" } 
+              src= {isScrolled ? "/assets/logo-black.png" : "/assets/logo-white.png" }  
               alt="Global United FC" 
               className="h-16 w-auto md:h-20" // Augmentation de la taille
             />
