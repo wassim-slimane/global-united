@@ -13,7 +13,7 @@ export default function Hero() {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src="/hero-background.mp4" type="video/mp4" />
+          <source src="/assets/hero-background.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
