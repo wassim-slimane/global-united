@@ -1,12 +1,32 @@
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function PreRegistration() {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const [submitStatus, setSubmitStatus] = useState({ loading: false, error: null, success: false })
 
-  const onSubmit = (data) => {
-    console.log(data)
-    // Add form submission logic here
+  const onSubmit = async (data) => {
+    setSubmitStatus({ loading: true, error: null, success: false })
+    
+    try {
+      const response = await fetch('https://global-unitedfc.com/mailer/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'envoi du formulaire')
+      }
+
+      setSubmitStatus({ loading: false, error: null, success: true })
+      reset() // Réinitialise le formulaire après un envoi réussi
+    } catch (error) {
+      setSubmitStatus({ loading: false, error: error.message, success: false })
+    }
   }
 
   return (
@@ -118,10 +138,19 @@ export default function PreRegistration() {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full rounded-full bg-primary py-4 font-bold text-white border border-white/10 hover:bg-primary/90 transition-colors"
+              disabled={submitStatus.loading}
+              className="w-full rounded-full bg-primary py-4 font-bold text-white border border-white/10 hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit Pre-Registration
+              {submitStatus.loading ? 'Envoi en cours...' : 'Soumettre la pré-inscription'}
             </motion.button>
+
+            {submitStatus.error && (
+              <p className="mt-4 text-center text-red-400">{submitStatus.error}</p>
+            )}
+
+            {submitStatus.success && (
+              <p className="mt-4 text-center text-green-400">Votre pré-inscription a été envoyée avec succès !</p>
+            )}
           </form>
         </motion.div>
       </div>

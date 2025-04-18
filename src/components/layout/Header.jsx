@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Navigation from './Navigation'
+import { Link } from 'react-scroll'
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -35,13 +36,21 @@ export default function Header() {
           <Navigation isScrolled={isScrolled} />
 
           {/* Pre-registration Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden rounded-full bg-primary px-6 py-2 font-bold text-white transition-colors hover:bg-primary/90 md:block"
+          <Link
+            to="pre-registration"
+            smooth={true}
+            duration={500}
+            offset={-80}
+            spy={true}
           >
-            Pre-Register
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden rounded-full bg-primary px-6 py-2 font-bold text-white transition-colors hover:bg-primary/90 md:block"
+            >
+              Pre-Register
+            </motion.button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
