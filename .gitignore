@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Assets
-assets/*mp4
+public/assets/*mp4
