@@ -10,7 +10,7 @@ export default function PreRegistration() {
     setSubmitStatus({ loading: true, error: null, success: false })
     
     try {
-      const response = await fetch('https://global-unitedfc.com/mailer/api/contact', {
+      const response = await fetch('http://localhost:3000/mailer/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
